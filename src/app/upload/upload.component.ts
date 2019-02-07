@@ -10,7 +10,9 @@ export class UploadComponent implements OnInit {
 
   constructor(private service:VideoService) { }
   file:File;
+  blobUrl:string=null;
   ngOnInit() {
+    this.streamVideo();
   }
 
   videoSelected(event){
@@ -22,6 +24,14 @@ export class UploadComponent implements OnInit {
     this.service.uploadVideo(this.file).subscribe(res=>{
       console.log(res);
     })
+  }
+
+  streamVideo(){
+    this.service.getStream().subscribe((response)=>{
+      let blob= response._body;
+      this.blobUrl=window.top.URL.createObjectURL(blob);
+      console.log("blob URL="+this.blobUrl);
+    });
   }
 
 }
