@@ -5,7 +5,7 @@ import { Http } from "@angular/http";
 })
 export class VideoService {
 
-  private url:string="http://localhost:8080/Video/upload/video";
+  private url:string="http://localhost:8080/upload/video";
   constructor(private http:Http) { }
 
   uploadVideo(file:File){
