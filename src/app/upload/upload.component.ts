@@ -8,7 +8,12 @@ import { VideoService } from '../service/video.service';
 })
 export class UploadComponent implements OnInit {
 
-  constructor(private service:VideoService) { }
+  isEmpty:boolean=true;
+  videoList:any=[];
+
+  constructor(private service:VideoService) {
+    this.loadAllVideo();
+  }
   file:File;
   ngOnInit() {
   }
@@ -22,6 +27,14 @@ export class UploadComponent implements OnInit {
     this.service.uploadVideo(this.file).subscribe(res=>{
       console.log(res);
     })
+  }
+
+  loadAllVideo(){
+    this.service.videoList().subscribe(responce=>{
+      this.videoList= JSON.parse(responce._body);
+      this.isEmpty = this.videoList.length > 0 ? true : false;
+      console.log(this.videoList);
+    });
   }
 
 }

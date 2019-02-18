@@ -5,6 +5,18 @@
   <button type="button" (click)="uploadFile()">Upload</button>
 </form>
 </div>
-<video src="http://localhost:8080/video/2" controls>
-  Yor Browser Dosen't Support Video Playing Please Upgrade...
-</video>
+<div>
+  <table>
+    <th>ID</th>
+    <th>File Name</th>
+    <tr *ngFor="let video of videoList">
+      <td>{{video.id}}</td>
+      <td>{{video.file_name}}</td>
+    </tr>
+  </table>
+</div>
+<div>
+  <video src="http://localhost:8080/video/1" controls>
+    Yor Browser Dosen't Support Video Playing Please Upgrade...
+  </video>
+</div>
